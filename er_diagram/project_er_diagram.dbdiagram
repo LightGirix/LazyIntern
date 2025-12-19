@@ -1,0 +1,180 @@
+{
+  "version": "1.0.0",
+  "darkMode": true,
+  "gridEnabling": false,
+  "detailLevel": "All",
+  "tablePositions": [
+    {
+      "name": "hubs",
+      "schemaName": "public",
+      "x": 16,
+      "y": 16
+    },
+    {
+      "name": "stations",
+      "schemaName": "public",
+      "x": 496,
+      "y": 16
+    },
+    {
+      "name": "companies",
+      "schemaName": "public",
+      "x": 16,
+      "y": 216
+    },
+    {
+      "name": "company_contacts",
+      "schemaName": "public",
+      "x": 496,
+      "y": 616
+    },
+    {
+      "name": "company_locations",
+      "schemaName": "public",
+      "x": 496,
+      "y": 248
+    },
+    {
+      "name": "positions",
+      "schemaName": "public",
+      "x": 496,
+      "y": 824
+    },
+    {
+      "name": "position_contacts",
+      "schemaName": "public",
+      "x": 1032,
+      "y": 16
+    },
+    {
+      "name": "position_tags",
+      "schemaName": "public",
+      "x": 1032,
+      "y": 216
+    }
+  ],
+  "tableGroupCollapseStates": [],
+  "stickyNoteLayouts": [],
+  "referencePaths": [
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "hubs",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "hub_id"
+      ],
+      "secondTableName": "stations",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "companies",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "company_id"
+      ],
+      "secondTableName": "company_contacts",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "companies",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "company_id"
+      ],
+      "secondTableName": "company_locations",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "hubs",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "nearest_hub_id"
+      ],
+      "secondTableName": "company_locations",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "companies",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "company_id"
+      ],
+      "secondTableName": "positions",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "company_locations",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "work_loc_id"
+      ],
+      "secondTableName": "positions",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "positions",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "position_id"
+      ],
+      "secondTableName": "position_contacts",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "positions",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "position_id"
+      ],
+      "secondTableName": "position_tags",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+enum line_code_enum {
+    arl [note: 'Airport Rail Link']
+    blue [note: 'MRT Blue Line']
+    brown [note: 'MRT Brown Line']
+    dark_green [note: 'BTS Silom Line']
+    gold [note: 'Gold Line']
+    grey [note: 'Grey Line']
+    light_green [note: 'BTS Sukhumvit Line']
+    orange [note: 'MRT Orange Line']
+    pink [note: 'MRT Pink Line']
+    purple [note: 'MRT Purple Line']
+    red_north
+    red_south
+    red_east
+    red_west
+    red_west_south
+    yellow [note: 'MRT Yellow Line']
+}
+
+enum pay_freq_enum {
+    daily
+    weekly
+    biweekly
+    monthly
+    lump_sum [note: 'One-time payment given at the end of a single work']
+}
+
+enum company_size_enum {
+    unspecified
+    small [note: 'Have up to 50 employee(s)']
+    medium [note: 'Have 50 up to 200 employee(s)']
+    big [note: 'Have more than 200 employee(s)']
+}
+
+enum station_prox_enum {
+    near [note: 'No more than 500m']
+    medium [note: 'From more than 500m to no more than 100m']
+    far [note: 'More than 1000m']
+}
+
+enum work_model_enum {
+    remote [note: 'Full 100% Online']
+    hybrid [note: 'Mandatory office days with WFH allowed on agreement']
+    onsite [note: 'Office work only']
+}
+
+Table hubs {
+    id serial [pk]
+    name_en text
+    name_th text
+    loc geography(Point, 4326)
+}
+
+Table stations {
+    id serial [pk]
+    station_code varchar(10) [not null]
+    line_code line_code_enum [not null]
+    hub_id integer [ref: > hubs.id]
+    active boolean [not null, default: False]
+}
+
+Table companies {
+    id serial [pk]
+    name text [not null]
+    size company_size_enum
+    desc text
+    img_url text
+}
+
+Table company_contacts {
+    id serial [pk]
+    company_id integer [ref: > companies.id]
+    platform varchar [note: 'fb, line, web, ig']
+    value text [note: 'The URL or ID']
+}
+
+Table company_locations {
+    id serial [pk]
+    company_id integer [ref: > companies.id]
+    name text [note: 'e.g., Head Office, Silom Branch, or Project Site A']
+    is_head_office boolean [default: false]
+    raw_loc text
+    loc geography(Point, 4326)
+    loc_verify boolean [default: false]
+    nearest_hub_id integer [ref: > hubs.id]
+    nearest_hub_dist numeric(10,2)
+    station_prox station_prox_enum
+}
+
+Table positions {
+    id serial [pk]
+    company_id integer [ref: > companies.id]
+    work_loc_id integer [ref: > company_locations.id]
+    title text
+    desc text
+    pay_amount numeric (10,2)
+    pay_freq pay_freq_enum
+    work_model work_model_enum
+    work_duration text
+    accept_coop_ed boolean
+}
+
+Table position_contacts {
+    id serial [pk]
+    position_id integer [ref: > positions.id]
+    contact_type varchar [note: 'recruit, details, tech_lead']
+    contact_info text [note: 'Phone number, Email, or specific Line ID']
+}
+
+
+
+Table position_tags {
+    id serial [pk] 
+    position_id integer [ref: > positions.id]
+    tag tags_enum
+}
