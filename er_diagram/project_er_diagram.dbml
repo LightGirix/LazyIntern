@@ -104,7 +104,7 @@ Table position_contacts {
     id serial [pk]
     position_id integer [ref: > positions.id]
     contact_type varchar [note: 'recruit, details, tech_lead']
-    contact_info text [note: 'Phone number, Email, or specific Line ID']
+    value text
 }
 
 
