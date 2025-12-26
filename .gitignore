@@ -1,0 +1,17 @@
+# Virtual environments
+venv/
+env/
+.venv/
+.env*
+!.env.example
+
+# Playwright
+/test-results/
+/playwright-report/
+/playwright/.cache/
+/.local-browsers
+/coverage/
+auth.json
+
+# Python
+__pycache__/
